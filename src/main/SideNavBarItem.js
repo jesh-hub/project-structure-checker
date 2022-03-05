@@ -1,0 +1,64 @@
+import React from 'react';
+import './SideNavBarItem.css';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {NavBarItemType} from "./SideNavBarConstValues";
+
+class SideNavBarItem extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            type: props.item.type,
+            name: props.item.name,
+            icon: getDefaultIcon(),
+            selected: false,
+            hasSubItems: props.item.type === NavBarItemType.directory &&
+                (props.item.subDirectories.length > 0 || props.item.files.length > 0),
+            subItems: props.item.type === NavBarItemType.directory ?
+                props.item.subDirectories.concat(props.item.files) : []
+        };
+
+        function getDefaultIcon() {
+            if (props.item.type === NavBarItemType.directory)
+                return 'folder';
+            else if (props.item.type === NavBarItemType.file)
+                return 'file-alt';
+        }
+    }
+
+    onClickNavItem(evt) {
+        evt.stopPropagation();
+        this.setState(prev => ({ selected: ! prev.selected }));
+        if (this.state.type === NavBarItemType.directory) {
+            this.setState(state =>
+                ({ icon: state.selected ? 'folder-open' : 'folder' }));
+
+        }
+    }
+
+    render() {
+        return (
+            <div
+                className="psc-side-nav-bar-item"
+                onClick={this.onClickNavItem.bind(this)}
+            >
+                <div className="psc-item-name">
+                    <FontAwesomeIcon icon={['far', this.state.icon]} />
+                    {this.state.name}
+                </div>
+                {
+                    this.state.hasSubItems &&
+                    this.state.selected &&
+                    <ul>
+                        {this.state.subItems.map(item =>
+                            <li key={`${item.type}_${item.name}`}>
+                                <SideNavBarItem item={item} />
+                            </li>
+                        )}
+                    </ul>
+                }
+            </div>
+        )
+    }
+}
+
+export default SideNavBarItem;
