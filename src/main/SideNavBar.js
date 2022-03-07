@@ -19,6 +19,26 @@ class SideNavBar extends React.Component {
      *  - RawProjectDirectory일 경우 key는 directory name
      */
     async componentDidMount() {
+        function ProjectDirectory(path) {
+            this.type = NavBarItemType.directory;
+            this.name = path;
+            this.subDirectories = [];
+            this.files = [];
+        }
+        /** @param {Array.<ProjectDirectory>} directories */
+        ProjectDirectory.prototype.setSubDirectory = function (directories) {
+            this.subDirectories = directories;
+        }
+        /** @param {RawProjectFiles} files */
+        ProjectDirectory.prototype.setFiles = function (files) {
+            this.files = files.map(name => new ProjectFile(name));
+        }
+
+        function ProjectFile(name) {
+            this.type = NavBarItemType.file;
+            this.name = name;
+        }
+
         const {keys} = await Api.get('/key');
 
         const navItems = [];
@@ -33,26 +53,7 @@ class SideNavBar extends React.Component {
             return ret;
         }, {});
         navItems.unshift(...recurseCreateDirectories(rawDir));
-        this.setState({ navItems: navItems });
-
-        function ProjectDirectory(path) {
-            this.type = NavBarItemType.directory;
-            this.name = path;
-            this.subDirectories = [];
-            this.files = [];
-
-            /** @param {Array.<ProjectDirectory>} directories */
-            this.setSubDirectory = directories =>
-                this.subDirectories = directories;
-            /** @param {RawProjectFiles} files */
-            this.setFiles = (files) => {
-                this.files = files.map(name => new ProjectFile(name));
-            }
-        }
-        function ProjectFile(name) {
-            this.type = NavBarItemType.file;
-            this.name = name;
-        }
+        this.setState({ navItems });
 
         /**
          * @param {RawProjectDirectory} target
