@@ -1,9 +1,35 @@
 .App {
     display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 .App > .psc-project-structure {
-    flex: 1 0 0;
+    position: relative;
+    background-color: #f0f0f0;
 }
-.App > .psc-content-viewer {
-    flex: 1 0 auto;
+
+@media (min-width: 768px) {
+    .App > .psc-project-structure {
+        flex: 1 0 30%;
+    }
+    .App > .psc-content-viewer {
+        flex: 1 0 70%;
+    }
+}
+@media (min-width: 1024px) {
+    .App {
+        flex-direction: row;
+    }
+    .App > .psc-project-structure {
+        flex: 1 0 25%;
+    }
+    .App > .psc-content-viewer {
+        flex: 1 0 75%;
+    }
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 1em;
 }

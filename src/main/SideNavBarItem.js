@@ -25,23 +25,21 @@ class SideNavBarItem extends React.Component {
         }
     }
 
-    onClickNavItem(evt) {
-        evt.stopPropagation();
+    onClickNavItem() {
         this.setState(prev => ({ selected: ! prev.selected }));
         if (this.state.type === NavBarItemType.directory) {
             this.setState(state =>
                 ({ icon: state.selected ? 'folder-open' : 'folder' }));
-
         }
     }
 
     render() {
         return (
-            <div
-                className="psc-side-nav-bar-item"
-                onClick={this.onClickNavItem.bind(this)}
-            >
-                <div className="psc-item-name">
+            <div className="psc-side-nav-bar-item">
+                <div
+                    className="psc-item-name"
+                    onClick={this.onClickNavItem.bind(this)}
+                >
                     <FontAwesomeIcon icon={['far', this.state.icon]} />
                     {this.state.name}
                 </div>
