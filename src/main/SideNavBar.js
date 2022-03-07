@@ -98,9 +98,10 @@ class SideNavBar extends React.Component {
             <div className="psc-side-nav-bar">
                 <ul>
                     {this.state.navItems.map(item =>
-                        <li key={`${item.type}_${item.name}`}>
-                            <SideNavBarItem item={item} />
-                        </li>
+                        <SideNavBarItem
+                            key={`${item.type}_${item.name}`}
+                            item={item}
+                        />
                     )}
                 </ul>
             </div>

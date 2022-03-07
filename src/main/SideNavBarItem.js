@@ -35,7 +35,7 @@ class SideNavBarItem extends React.Component {
 
     render() {
         return (
-            <div className="psc-side-nav-bar-item">
+            <li className="psc-side-nav-bar-item">
                 <div
                     className="psc-item-name"
                     onClick={this.onClickNavItem.bind(this)}
@@ -48,13 +48,14 @@ class SideNavBarItem extends React.Component {
                     this.state.selected &&
                     <ul>
                         {this.state.subItems.map(item =>
-                            <li key={`${item.type}_${item.name}`}>
-                                <SideNavBarItem item={item} />
-                            </li>
+                            <SideNavBarItem
+                                key={`${item.type}_${item.name}`}
+                                item={item}
+                            />
                         )}
                     </ul>
                 }
-            </div>
+            </li>
         )
     }
 }
