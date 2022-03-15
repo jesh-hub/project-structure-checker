@@ -101,6 +101,7 @@ class SideNavBar extends React.Component {
                         <SideNavBarItem
                             key={`${item.type}_${item.name}`}
                             item={item}
+                            onItemSelected={this.props.onItemSelected}
                         />
                     )}
                 </ul>

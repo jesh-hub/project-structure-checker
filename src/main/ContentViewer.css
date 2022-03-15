@@ -1,0 +1,10 @@
+.psc-content-viewer {
+
+}
+
+.psc-content-viewer.psc-show {
+    display: inherit;
+}
+.psc-content-viewer.psc-hidden {
+    display: none;
+}

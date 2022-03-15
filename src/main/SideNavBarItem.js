@@ -30,7 +30,8 @@ class SideNavBarItem extends React.Component {
         if (this.state.type === NavBarItemType.directory) {
             this.setState(state =>
                 ({ icon: state.selected ? 'folder-open' : 'folder' }));
-        }
+        } else
+            this.props.onItemSelected(this.props.item);
     }
 
     render() {
@@ -51,6 +52,7 @@ class SideNavBarItem extends React.Component {
                             <SideNavBarItem
                                 key={`${item.type}_${item.name}`}
                                 item={item}
+                                onItemSelected={this.props.onItemSelected}
                             />
                         )}
                     </ul>
