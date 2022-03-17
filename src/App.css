@@ -12,6 +12,10 @@
     flex-direction: column;
     overflow-x: auto;
 }
+.App > .psc-project-structure > .psc-navigation,
+.App > .psc-content-viewer {
+    padding: 0 0.5em;
+}
 
 @media (min-width: 768px) {
     .App > .psc-project-structure {

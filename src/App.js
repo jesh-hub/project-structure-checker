@@ -27,19 +27,22 @@ class App extends React.Component {
     render() {
         return (
             <div className="App">
-                <div className="psc-project-structure">
+                <section className="psc-project-structure">
+                    <h3 className="psc-navigation">Navigation</h3>
                     <SideNavBar onItemSelected={this.onFileSelected.bind(this)}/>
-                </div>
-                <div className="psc-content-viewer">
+                </section>
+                <section className="psc-content-viewer">
                     {
-                        this.state.openedFiles.map(file =>
-                            <ContentViewer
-                                key={file.name}
-                                name={file.name}
-                                active={this.state.activeFile === file}
-                            />)
+                        this.state.openedFiles.length ?
+                            this.state.openedFiles.map(file =>
+                                <ContentViewer
+                                    key={file.name}
+                                    name={file.name}
+                                    active={this.state.activeFile === file}
+                                />) :
+                            <p>Navigation에서 파일을 선택해보세요!</p>
                     }
-                </div>
+                </section>
             </div>
         )
     }
