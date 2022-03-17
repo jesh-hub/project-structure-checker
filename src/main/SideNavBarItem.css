@@ -7,4 +7,5 @@
     align-items: center;
     gap: .5rem;
     padding: .2em 0;
+    white-space: nowrap;
 }

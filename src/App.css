@@ -2,15 +2,20 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
+    width: 100vw;
 }
 .App > .psc-project-structure {
     position: relative;
     background-color: #f0f0f0;
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
 }
 
 @media (min-width: 768px) {
     .App > .psc-project-structure {
-        flex: 1 0 30%;
+        flex: 0 30%;
     }
     .App > .psc-content-viewer {
         flex: 1 0 70%;
@@ -21,7 +26,7 @@
         flex-direction: row;
     }
     .App > .psc-project-structure {
-        flex: 1 0 25%;
+        flex: 0 25%;
     }
     .App > .psc-content-viewer {
         flex: 1 0 75%;

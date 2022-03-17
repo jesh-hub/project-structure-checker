@@ -1,6 +1,4 @@
 .psc-side-nav-bar {
-    height: calc(100% - 2em);
+    flex: 1 0 0;
     overflow: auto;
-    border-right: 1px solid #e0e0e0;
-    padding: 1em 0;
 }
